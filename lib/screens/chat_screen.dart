@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import "package:firebase_auth/firebase_auth.dart";
+import 'package:udemy_chat_app/widgets/chat/messages.dart';
+import 'package:udemy_chat_app/widgets/chat/new_messages.dart';
 
 class ChatScreen extends StatelessWidget {
   @override
@@ -28,43 +30,26 @@ class ChatScreen extends StatelessWidget {
                 ),
                 value: "logout",
               ),
-            ], onChanged: (itemIdentifier)
-        {
-          if (itemIdentifier == "logout") {
-            FirebaseAuth.instance.signOut();
-          }
+            ],
+            onChanged: (itemIdentifier) {
+              if (itemIdentifier == "logout") {
+                FirebaseAuth.instance.signOut();
+              }
             },
           ),
         ],
       ),
-      body: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance
-              .collection("chats/9rqWyfOm3008goLMZC1x/messages")
-              .snapshots(),
-          builder: (context, streamSnapshot) {
-            if (streamSnapshot.connectionState == ConnectionState.waiting) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-            final documents = streamSnapshot.data.docs;
-            return ListView.builder(
-                itemCount: documents.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    padding: EdgeInsets.all(8),
-                    child: Text(documents[index]["text"]),
-                  );
-                });
-          }),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          FirebaseFirestore.instance
-              .collection("chats/9rqWyfOm3008goLMZC1x/messages")
-              .add({"text": "this was added by button"});
-        },
+      body: Container(
+        child: Column(
+          children: [
+            Expanded(
+              child: Messages(),
+            ),
+            NewMessage(),
+          ],
+        ),
       ),
+
     );
   }
 }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:udemy_chat_app/widgets/auth_form.dart';
+import 'file:///E:/project/udemy_chat_app/lib/widgets/auth/auth_form.dart';
 
 class AuthScreen extends StatefulWidget {
   @override

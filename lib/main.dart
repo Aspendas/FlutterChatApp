@@ -23,11 +23,11 @@ class App extends StatelessWidget {
       future: _initialization,
       builder: (context, snapshot) {
         // Check for errors
-         if (snapshot.hasError) {
-           return Scaffold(
-             body: Container(color: Colors.red),
-           );
-         }
+        if (snapshot.hasError) {
+          return Scaffold(
+            body: Container(color: Colors.red),
+          );
+        }
 
         // Once complete, show your application
         if (snapshot.connectionState == ConnectionState.done) {

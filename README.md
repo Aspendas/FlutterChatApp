@@ -1,6 +1,11 @@
-# udemy_chat_app
+# flutter_chat_app
 
-A new Flutter application.
+Application functions:
+- Firebase Auth
+- Firebase Firestrore
+- Firebase storage
+- Image picking
+- Chat Function
 
 ## Getting Started
 
